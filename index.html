@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Galaxy Protector by Subham</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loadingScreen" class="overlay active">
+        <h1 class="glitch">GALAXY PROTECTOR</h1>
+        <p>By Subham</p>
+        <div class="loader-container">
+            <div id="progressBar"></div>
+        </div>
+        <p style="font-size: 12px; margin-top: 10px;">Loading assets...</p>
+    </div>
+
+    <div id="startPrompt" class="overlay">
+        <h1>GALAXY PROTECTOR</h1>
+        <p>By Subham</p>
+        <button class="btn btn-green" onclick="game.initAudio()">CONTINUE</button>
+    </div>
+
+    <div id="hud">
+        <div id="healthDisplay">❤️3</div>
+        <div id="gameStats">Kills: 0 | <span class="currency">GC: 0</span></div>
+        <div id="shieldStatusHUD">🛡️ SHIELD: 0s</div>
+    </div>
+
+    <div id="shieldBtnContainer" onclick="game.activateShieldInGame()">
+        🛡️<div id="shieldCountLabel">0</div>
+    </div>
+
+    <div id="lobby" class="overlay menu-bg">
+        <h1>GALAXY PROTECTOR by Subham</h1>
+        <button class="btn btn-green" onclick="game.startGame()">PLAY</button>
+        <button class="btn" onclick="ui.showPanel('shopPanel')">SHOP</button>
+        <button class="btn" onclick="ui.showPanel('settingsPanel')">SETTINGS</button>
+        <button class="btn" onclick="ui.showPanel('statsPanel')">VIEW STATS</button>
+        <button class="btn" onclick="ui.showPanel('creditsPanel')">CREDITS</button>
+        
+        <div class="version-label">Version: 1.4.35</div>
+    </div>
+
+    <div id="shopPanel" class="overlay">
+        <div class="panel">
+            <h2 style="color:var(--gold)">GALAXY SHOP</h2>
+            <p>Your Balance: <span class="currency GC-balance">0</span> GC</p>
+            <div class="grid">
+                <div class="item-card">
+                    <h4>Shield Power-up 🛡️</h4>
+                    <p id="shopShieldInfo">Duration: 3.0s</p>
+                    <button class="btn shop-btn" onclick="game.buyShield()">Buy 1 Shield (49 GC)</button>
+                    <button class="btn shop-btn" onclick="game.upgradeShield()">Upgrade +0.5s (99 GC)</button>
+                </div>
+                <div class="item-card">
+                    <h4>Health Upgrades ❤️</h4>
+                    <p id="shopHeartInfo">Current Lives: 3</p>
+                    <button class="btn shop-btn" onclick="game.buyHeart()">One time purchase Heart  (999 GC)</button>
+                    <button class="btn shop-btn" onclick="game.upgradeHeart()">+1 Extra Life [can be upgraded upto 11] (499 GC)</button>
+                </div>
+            </div>
+            <h3 style="margin-top:30px; color:#666;">SPACESHIP Shop</h3>
+            <p style="font-style:italic; color:#444;">Coming Soon...</p>
+            <hr style="border:0; border-top:1px solid #333; margin:20px 0;">
+            <button class="btn btn-green" onclick="ui.hidePanels()">BACK TO LOBBY</button>
+        </div>
+    </div>
+
+    <div id="settingsPanel" class="overlay"><div class="panel"><h2>SETTINGS</h2><p>Music: <button class="btn" id="bgmToggle" style="width:100px" onclick="game.toggleBGM()">ON</button></p><p>Sounds: <button class="btn" id="sfxToggle" style="width:100px" onclick="game.toggleSFX()">ON</button></p><button class="btn" onclick="ui.hidePanels()">BACK</button></div></div>
+    <div id="statsPanel" class="overlay"><div class="panel"><h2>Player States</h2><div id="statsContent"></div><button class="btn" onclick="ui.hidePanels()" style="margin-top:20px">BACK</button></div></div>
+    <div id="creditsPanel" class="overlay"><div class="panel"><h2>CREDITS</h2><p>Developed By: Subham</p><p>Assets: Pixabay, Kindpng</p><p>Audio: Pixabay music & effects</p> <p>Contact: suvamsubham50@gmail.com</p><button class="btn" onclick="ui.hidePanels()">BACK</button></div></div>
+
+    <div id="gameOver" class="overlay">
+        <h1 style="color:var(--red)">GAME OVER</h1>
+        <p id="finalScore" style="font-size:24px"></p>
+        <button class="btn btn-green" onclick="game.startGame()">PLAY AGAIN</button>
+        <button class="btn" onclick="game.backToHome()">HOME</button>
+    </div>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
